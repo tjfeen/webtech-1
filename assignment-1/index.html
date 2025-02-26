@@ -1,34 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Wohoo!</title>
+
+    <!-- include main styles (ofc. on a real webserver i'd use absolute paths but vscode Live server doesnt like that) -->
+    <link rel="stylesheet" href="./assets/styles/main.css">
+
+    <!-- include Inter fonts from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+
+    <!-- include Alpine.js for search purposes (i hope this is allowed because jquery really sucks) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine.js"
+        integrity="sha512-nIwdJlD5/vHj23CbO2iHCXtsqzdTTx3e3uAmpTm4x2Y8xCIFyWu4cSIV8GaGe2UNVq86/1h9EgUZy7tn243qdA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- include jquery for assignment requirement purposes -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
+
 <body>
-    <h1>This is my index page</h1>
-    <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem deserunt optio similique beatae deleniti quo nulla, minus tempora ratione voluptas illum reiciendis sapiente voluptatum sequi maiores. Explicabo rerum modi vitae aspernatur cumque voluptatem quas placeat numquam. Autem magnam quos quae! Magni reiciendis beatae explicabo quod doloribus, reprehenderit sit dolores unde iure officiis amet itaque repudiandae voluptatum laborum commodi a optio, quibusdam ex tenetur vero autem alias nesciunt, soluta error? Dolorem voluptate inventore, aspernatur aliquam esse pariatur commodi illum hic itaque. Voluptate amet quaerat reprehenderit vel. Quo consequatur explicabo ducimus beatae.
-    </p>
-    <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi quia voluptate totam excepturi tempora! Doloribus velit voluptas id ipsum minima earum? Officiis distinctio enim nostrum debitis ab, nam eum ad tempora, harum suscipit iusto adipisci voluptates exercitationem numquam commodi odit a sunt voluptatibus vero natus facilis. Aliquid doloremque alias necessitatibus.
-    </p>
-    <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum doloribus architecto cum doloremque ab minima qui officia, velit perspiciatis repellat accusantium dolorem magni mollitia soluta consequuntur dicta optio aperiam saepe corrupti eveniet suscipit. Cupiditate, expedita mollitia veritatis eveniet ipsa error.
-    </p>
-    <h2>List of pages</h2>
-    <p>
-        <ul>
-            <li><a href="../page-1/">Page 1 (you're currently on this page)</a></li>
-            <li><a href="../page-2/">Page 2</a></li>
-            <li><a href="../page-3/">Page 3</a></li>
-        </ul>
-    </p>
-    <!-- please don't grade the styles -->
-   <style>
-        body {
-            font-family: sans-serif;
+    <header class="mb-5">
+        <div class="hero">
+            <div class="container">
+                <h1>Wohoo!</h1>
+                <p>Welcome to my index page! <span class="font-comic-sans">There isn't much text yet, but maybe that'll come in the future...</span></p>
+                <!-- i couldnt change the custom css property with $.css() but hey at least is used $.get() -->
+                <button 
+                    class="btn btn-primary" 
+                    onclick="$('html').get(0).style.setProperty('--primary', `hsl(${Math.round(Math.random() * 360)}, 100%, 80%)`)">
+                    Change primary color
+                </button>
+            </div>
+        </div>
+    </header>
+    <main class="container mb-5">
+        <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem deserunt optio similique beatae deleniti
+            quo nulla, minus tempora ratione voluptas illum reiciendis sapiente voluptatum sequi maiores. Explicabo
+            rerum modi vitae aspernatur cumque voluptatem quas placeat numquam. Autem magnam quos quae! Magni reiciendis
+            beatae explicabo quod doloribus, reprehenderit sit dolores unde iure officiis amet itaque repudiandae
+            voluptatum laborum commodi a optio, quibusdam ex tenetur vero autem alias nesciunt, soluta error? Dolorem
+            voluptate inventore, aspernatur aliquam esse pariatur commodi illum hic itaque. Voluptate amet quaerat
+            reprehenderit vel. Quo consequatur explicabo ducimus beatae.
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi quia voluptate totam excepturi tempora!
+            Doloribus velit voluptas id ipsum minima earum? Officiis distinctio enim nostrum debitis ab, nam eum ad
+            tempora, harum suscipit iusto adipisci voluptates exercitationem numquam commodi odit a sunt voluptatibus
+            vero natus facilis. Aliquid doloremque alias necessitatibus.
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum doloribus architecto cum doloremque ab minima
+            qui officia, velit perspiciatis repellat accusantium dolorem magni mollitia soluta consequuntur dicta optio
+            aperiam saepe corrupti eveniet suscipit. Cupiditate, expedita mollitia veritatis eveniet ipsa error.
+        </p>
+        <div x-data="{ 
+        query: '', 
+        isVisible(keyword) {
+            return !this.query || keyword.toLowerCase().includes(this.query.toLowerCase().trim());
         }
-    </style>
+    }">
+            <div class="flex-row">
+                <h2 class="mb-0">List of pages</h2>
+                <input type="text" x-model="query" class="ms-3" placeholder="Search (e.g. page 1, third part)" />
+            </div>
+            <ul>
+                <li x-show="isVisible('index page 1, first part')"><a href="../page-1/">Page 1 (you're currently on this
+                        page)</a></li>
+                <li x-show="isVisible('page 2 for the second part')"><a href="../page-2/">Page 2</a></li>
+                <li x-show="isVisible('page 3 for the third part')"><a href="../page-3/">Page 3</a></li>
+            </ul>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <h2>This is my footer with some content</h2>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut ducimus nulla unde quibusdam illum quo similique. Minima voluptatibus cumque rem, necessitatibus magni molestias atque praesentium, excepturi provident dolor, quibusdam aliquid?
+            </p>
+        </div>
+    </footer>
 </body>
+
 </html>

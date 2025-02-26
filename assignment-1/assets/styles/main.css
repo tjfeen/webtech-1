@@ -1,0 +1,112 @@
+:root {
+  --gray-200: hsl(200, 4%, 14%);
+  --gray-300: hsl(200, 4%, 20%);
+  --gray-600: hsl(200, 4%, 70%);
+  --gray-900: hsl(200, 4%, 100%);
+  --magenta-800: hsl(282, 100%, 80%);
+  --primary: var(--magenta-800); 
+  text-decoration: none;
+}
+
+body {
+  background-color: var(--gray-200);
+  color: var(--gray-900);
+  font-family: "Inter", "Arial", sans-serif;
+  margin: 0;
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.btn {
+    border-radius: 0.25rem;
+    border: none;
+    padding: 0.5rem 1rem;
+}
+
+.btn-primary {
+    background-color: var(--gray-200);
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+    transition: 100s transform ease-out;
+}
+
+.btn-primary:hover {
+    transform: scaleX(15);
+}
+
+.font-comic-sans {
+  /** i couldn't find comic sans on Google Fonts **/
+  font-weight: 800;
+  font-style: italic;
+  font-family: "Comic Neue", sans-serif;
+}
+
+.container {
+  max-width: max(80vw, 600px);
+  margin: 0 auto;
+}
+
+.hero {
+  background-color: var(--primary);
+  text-decoration: none;
+  color: var(--gray-200);
+  padding: 20vh 0;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.ms-3 {
+  margin-inline-start: 1.5rem;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.mb-5 {
+    margin-bottom: 4rem;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+input[type="text"] {
+    border-radius: 0.25rem;
+    outline: none !important;
+    border: 1px solid var(--primary);
+    padding: 0.5rem 1rem;
+    background-color: var(--gray-200);
+    color: inherit;
+}
+
+input[type="text"]::placeholder {
+    color: var(--gray-600);
+}
+
+input[type="text"]:hover {
+    background-color: var(--gray-300);
+}
